@@ -20,7 +20,6 @@
 
     <modules>
         <module>mybatis</module>
-        <module>java-web</module>
     </modules>
 
     <properties>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        // 自定义对象
+        let person = {
+            name: "zhangsan",
+            age: 18,
+            isEmp: true,
+            work: function() {
+                console.log("work")
+            }
+        }
+
+        // 调用属性：对象.属性
+        console.log(person.name);
+
+        // 属性的内容和类型可以直接修改，
+        person.age = 18.5;
+        console.log(person.age);
+
+        // 调用方法：对象.方法
+        person.work();
+    </script>
+</html>

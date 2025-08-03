@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎注册</title>
+        <link href="../css/register.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="form-div">
+            <div class="reg-content" align="center">
+                <h1>欢迎注册</h1>
+            </div>
+
+            <form id="reg-form" action="#" method="get">
+                <table>
+                    <tr>
+                        <td>账&emsp;号</td>
+                        <td class="inputs">
+                            <input type="text" id="username" name="username">
+                            <br>
+                            <span id="username_err" class="err_msg" style="display: none">账号长度应为 6-12 位</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>密&emsp;码</td>
+                        <td class="inputs">
+                            <input type="password" id="password" name="password">
+                            <br>
+                            <span id="password_err" class="err_msg" style="display: none">密码长度应为 6-12 位</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>手机号</td>
+                        <td class="inputs">
+                            <input type="text" id="tel" name="tel">
+                            <br>
+                            <span id="tel_err" class="err_msg" style="display: none">手机号 1 开头，长度位 11</span>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="buttons">
+                    <input value="注 册" type="submit" id="reg_btn">
+                </div>
+
+                <br class="clear">
+            </form>
+        </div>
+    </body>
+    <script>
+        /**
+         * 注册验证流程如下：
+         *
+         *      1）当输入框失去焦点时，验证输入内容是否符合要求
+         *          1. 验证账号是否符合规则（长度位 6-12 位）
+         *          2. 验证密码是否符合规则（长度位 6-12 位）
+         *          3. 验证手机号是否符合规则（长度位 11 位）
+         *
+         *      2）当点注册按钮时，判断所有输入框的内容是否都符合要求，如果不符合要求则阻止表单提交
+         */
+
+        /** 1. 验证账号是否符合规则（长度位 6-12 位）*/
+
+        // 1.1 获取账号输入框对象
+        let usernameInput = window.document.getElementById("username");
+
+        // 1.2 给账号输入框对象绑定 onblur 事件
+        usernameInput.onblur = checkUsername;
+
+        /** 2. 验证密码是否符合规则（长度位 6-12 位）*/
+
+        // 2.1 获取密码输入框对象
+        let passwordInput = window.document.getElementById("password");
+
+        // 2.2 给密码输入框对象绑定 onblur 事件
+        passwordInput.onblur = checkPassword;
+
+        /** 3. 验证手机号是否符合规则（长度位 11 位）*/
+
+        // 2.1 获取手机号输入框对象
+        let telInput = window.document.getElementById("tel");
+
+        // 2.2 给手机号输入框对象绑定 onblur 事件
+        telInput.onblur = checkTel;
+
+        /** 4. 表单提交验证 */
+
+        // 4.1 获取表单对象
+        let regForm = window.document.getElementById("reg-form");
+
+        // 4.2 给表单对象绑定 onsubmit 事件
+        regForm.onsubmit = function () {
+            // 所有输入框输入的内容都符合校验规则时才允许提交表单
+            return checkUsername() && checkPassword() && checkTel();
+        }
+
+        function checkUsername() {
+            // 获取账号输入框中的文本值
+            let username = usernameInput.value.trim();
+
+            // 判断账号输入框中输入的文本值是否符合规则
+            let reg = /^\w{6,12}$/;
+            let flag = reg.test(username);
+            // let flag = username.length >= 6 && username.length <= 12;
+
+            if (flag) {
+                // 符合规则
+                window.document.getElementById("username_err").style.display = 'none';
+            } else {
+                // 不合规则，显示隐藏的错误提示信息
+                window.document.getElementById("username_err").style.display = '';
+            }
+
+            return flag;
+        }
+
+        function checkPassword() {
+            // 获取密码输入框中的文本值
+            let password = passwordInput.value.trim();
+
+            // 判断密码输入框中输入的文本值是否符合规则
+            let reg = /^\w{6,12}$/;
+            let flag = reg.test(password);
+            // let flag = password.length >= 6 && password.length <= 12;
+
+            if (flag) {
+                // 符合规则
+                window.document.getElementById("password_err").style.display = 'none';
+            } else {
+                // 不合规则，显示隐藏的错误提示信息
+                window.document.getElementById("password_err").style.display = '';
+            }
+
+            return flag;
+        }
+
+        function checkTel() {
+            // 获取手机号输入框中的文本值
+            let tel = telInput.value.trim();
+
+            // 判断手机号输入框中输入的文本值是否符合规则
+            let reg = /^[1]\d{10}$/;
+            let flag = reg.test(tel);
+            // let flag = tel.length == 11;
+
+            if (flag) {
+                // 符合规则
+                window.document.getElementById("tel_err").style.display = 'none';
+            } else {
+                // 不合规则，显示隐藏的错误提示信息
+                window.document.getElementById("tel_err").style.display = '';
+            }
+
+            return flag;
+        }
+    </script>
+</html>

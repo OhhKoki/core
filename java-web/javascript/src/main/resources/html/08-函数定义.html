@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        /* 函数定义的方式一 */
+
+        function add(v1,v2) {
+            return v1 + v2;
+        }
+
+        // 正常调用
+        console.log("调用 add 函数（实参与形参数量一致），返回值为：" + add(1,2));
+
+        /**
+         * 调用函数时，传入 function 的实参数量和形参数量可以不一致：
+         *    1）当实参比形参少时，缺少值的形参值为 NaN；
+         *    2）当实参比形参多时，多出来的实参没有形参接收，相当于白传；
+         */
+
+        console.log("调用 add 函数（实参比形参数量少一个），返回值为：" + add(1));    // 少了一个参数
+        console.log("调用 add 函数（实参比形参数量多一个），返回值为：" + add(1,2,3));    // 多了一个参数
+
+        /* 函数定义的方式二 */
+
+        let sub = function (v1,v2) {
+            return v1 - v2;
+        }
+
+        console.log("调用 sub 函数（实参与形参数量一致），返回值为：" + sub(2,1));
+    </script>
+</html>

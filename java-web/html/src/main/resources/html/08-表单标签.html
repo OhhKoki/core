@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>表单标签</title>
+    </head>
+    <body>
+        <!--
+            form：
+                1）action：规定表单数据提交到哪个 url；
+                2）method：
+                    1、get：默认值，请求参数会拼接在 form 的 action 属性中，action 的长度有限（请求参数个数有限制）；
+                    2、post：请求参数会存放在 http 请求协议的 body 中，请求参数没有个数限制；
+            input：
+                1）type：
+                    1、text
+                    2、password
+                2）name：
+                    1、规定 input 元素的名称，name 属性用于对提交到服务器后的表单数据进行标识，只有设置了 name 属性的表单元素才能在提交
+                    （原因：服务端获取表单提交的数据是通过表单元素的 name 属性的值而得到的，没有 name 属性就无法得到表单元素提交给服务端的值，例如：String username = request.getParameter("username");）
+
+        -->
+        <form action="#" method="post">
+            <p>
+                <!--
+                    label：
+                        1）label 标签为 input 元素定义标注（标记）；
+                        2）label 标签不会向用户呈现任何特殊效果。不过，如果您在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上；
+                        3）label 标签的 for 属性应当与相关元素的 id 属性相同；
+                -->
+                <label for="username">用户账号：</label><input type="text" id="username" name="username"><br>
+                <label for="password">用户密码：</label><input type="password" id="password" name="password"><br>
+            </p>
+
+            <p>
+                <!--
+                    radio：
+                        1）name：具有相同 name 属性值的 radio 会互斥（不指定 name 属性不具有互斥效果，所以该属性必须指定）；
+                        2）value：指定选中的单选框提交数据时，提交什么值（不指定 value 时，会提交一个 on，服务器都不知道是啥，所以该属性必须指定）；
+                -->
+                用户性别：
+                <input type="radio" id="male" name="gender" value="male"> <label for="male">男</label>
+                <input type="radio" id="female" name="gender" value="female"> <label for="female">女</label>
+            </p>
+
+            <p>
+                <!--
+                    checkbox：
+                        1）name：具有相同 name 代表是同一组 checkbox；
+                        2）value：指定选中的单选框提交数据时，提交什么值（不指定 value 时，会提交一个 on，服务器都不知道是啥，所以该属性必须指定）；
+                -->
+                用户爱好：
+                <input type="checkbox" id="basketball" name="hobbit" value="1"> <label for="basketball">篮球</label>
+                <input type="checkbox" id="football" name="hobbit" value="2"> <label for="football">足球</label>
+                <input type="checkbox" id="volleyball" name="hobbit" value="3"> <label for="volleyball">排球</label>
+            </p>
+
+            <p>
+                用户头像：<input type="file" name="file">
+            </p>
+
+            <p>
+                <!--
+                    select：
+                        1）name：指定下拉选的 name 属性；
+                        2）value：不指定 value 属性时，提交上去的是 option 对应的文本值；
+                -->
+                用户城市：
+                <select name="city" >
+                    <option value="1">北京市</option>
+                    <option value="2">广州市</option>
+                    <option value="3">天津市</option>
+                </select>
+            </p>
+
+            <p>
+                用户描述：<textarea name="userdesc" cols="10" rows="2"></textarea>
+            </p>
+
+            <p>
+                点击按钮：
+                <input type="submit" value="点击注册">
+                <input type="reset" value="重置数据">
+                <input type="button" value="普通按钮">
+            </p>
+        </form>
+    </body>
+</html>

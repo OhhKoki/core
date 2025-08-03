@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        /**
+         * 在使用 == 运算符时，发现会进行类型转换，在 js 中的类型转换有两种情况：
+         *
+         *    1、其他类型转为 number
+         *        1）string -> number：
+         *              按照字符串的字面值，转为数字。如果字面值不是数字，则转为 NaN；
+         *        2）boolean -> number：
+         *              true 转为 1，false 转为 0；
+         *
+         *    2、其他类型转为 boolean
+         *         1）number -> booleans：
+         *              0 和 NaN 转为 false，其他的数字转为 true；
+         *         2）string -> booleans：
+         *              空字符串转为 false，其他的字符串转为 true；
+         *         3）null -> booleans：
+         *              false；
+         *         4）undefined -> booleans：
+         *              false；
+         */
+
+        // string -> number
+
+        /**
+         * 在 js 中 string 转 number 有两种方式：
+         *      1）在 string 前使用 +，用于表示正负号；
+         *      2）使用 parseInt 函数；
+         */
+        let v1 = "100";
+        console.log(+v1 + 100);
+        console.log(parseInt(v1) + 200);    // 建议使用该方法，语义清晰
+
+        let v2 = "abc";
+        console.log(+v2);
+        console.log(parseInt(v2));
+
+        // boolean -> number
+        let v3 = false;
+        console.log(v3 + 100);    // boolean 转数字时，不需要使用 + 进行手动转
+        console.log(v3 + 200);
+
+        // 其他类型（number、string、null、undefined）-> boolean
+
+    </script>
+</html>

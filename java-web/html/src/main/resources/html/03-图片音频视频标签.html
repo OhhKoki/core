@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>图片音频视频标签</title>
+    </head>
+    <body>
+        <!--
+            尺寸单位：
+                （需要注意：width 和 height 使用的尺寸单位必须一致）
+                1）px：像素，例如：<img src="/img/a.jpg" width="389px" height="500px">
+                2）% ：百分比（占整个 body 的百分之几），例如：<img src="/img/a.jpg" width="30%" height="20%">
+
+            资源路径：
+                1）相对路径：<img src="../data/a.jpg" width="30%" height="20%">
+                2）绝对路基：<img src="/data/a.jpg" width="30%" height="20%">
+        -->
+        <img src="../data/a.jpg" width="30%" height="20%">
+
+        <hr>
+
+        <audio src="../data/b.mp3" controls="controls"></audio>
+
+        <hr>
+
+        <!--
+            尺寸单位 & 资源路径 与 img 是一致的
+        -->
+        <video src="../data/c.mp4" controls="controls" width="30%" height="20%"></video>
+    </body>
+</html>

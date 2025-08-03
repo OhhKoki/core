@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        /*
+        * 在 js 中定义变量有三种方法：var\let\const，其中，let 和 const 的用法和 java 中定义变量很类似（作用域和不可重复定义）
+        */
+
+        /* 使用 var 定义变量 */
+        var v1 = 20;
+        console.log("v1：" + v1);
+
+        /* JavaScript 是一门弱类型的语言，变量可以存放不同类型的值； */
+        v1 = "张三";
+        console.log("v1：" + v1);
+
+        /* 使用 var 声明的变量相当于全局变量（即：在代码块外能访问到在代码块里声明的变量） */
+        {
+            var v2 = 40;
+        }
+        console.log("v2：" + v2);
+
+        /* 使用 var 能重复声明变量，并遵循就近原则 */
+        var v2 = "李四";
+        console.log("v2：" + v2);
+
+        /* 使用 let 声明的变量相当于局部变量（即：在代码块外部能访问到在代码块里声明的变量） */
+        {
+            let v3 = 60;
+        }
+        // console.log("v3：" + v3);
+
+        /* 使用 let 不能重复声明变量 */
+        let v4 = 80;
+        // let v4 = "王五";
+        console.log("v4：" + v4);
+
+        /* 使用 const 可以声明一个只读常量，常量的值在声明后不可修改（注意，const 的用法和 let 十分类似：作用域一样，同样不能重复声明） */
+        const v5 = "100";
+        // v5 = "赵六";
+        console.log("v5：" + v5);
+
+        {
+            const v6 = 3.14;
+            // const v6 = 3;
+        }
+
+        //console.log("v6：" + v6);
+    </script>
+</html>

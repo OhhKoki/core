@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        /**
+         * 正则对象的两种创建方式：
+         *      方式一：
+         *          let reg1 = /正则表达式/;
+         *
+         *      方式二：
+         *          let reg1 = new RegExp(/正则表达式/);
+         */
+
+        // 方式一：let reg1 = /正则表达式/
+        let reg1 = /^\w{6,12}$/;
+        console.log(reg1.test("233hello232"));
+
+        // 方式二：let reg1 = new RegExp(/正则表达式/)
+        let reg2 = new RegExp(/^\w{6,12}$/);    // 加上双引号之后有问题？
+        console.log(reg2.test("233hello232"));
+    </script>
+</html>

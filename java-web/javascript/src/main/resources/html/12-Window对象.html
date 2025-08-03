@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+        window.alert("JS 内置了一个 window 对象，不需要自己创建，拿来直接用");
+        alert("调用 window 对象的方法时，window. 可以省略");
+        window.confirm("window 对象的 confirm 用于弹出一个确认框，点击好返回 false，确认返回 true");
+
+        // 通过 window 对象获取其他 BOM 对象
+        console.log(window.screen);
+        console.log(window.navigator);
+        console.log(window.location);
+        console.log(window.history);
+
+        // setInterval
+        window.setInterval(function() {
+            console.log("setInterval 是一个周期调用的定时器")
+        }, 3000);
+
+        // setTimeout
+        window.setTimeout(function() {
+            console.log("setTimeout 是一个只会调用一次的定时器");
+        })
+    </script>
+</html>

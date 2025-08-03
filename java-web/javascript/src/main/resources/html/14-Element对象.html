@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <p id="p1">这是一个段落</p>
+
+        <div class="d1">这是一个 div</div> <br>
+        <div class="d1">这是一个 div</div> <br>
+
+        <input type="checkbox" name="hobby"> 电影
+        <input type="checkbox" name="hobby"> 旅游
+        <input type="checkbox" name="hobby"> 游戏
+
+        <p>
+            <input type="button" value="div 样式" onclick="changeColor()">
+        </p>
+
+        <p>
+            <input type="button" value="checkbox 全选" onclick="checkAll()">
+        </p>
+    </body>
+    <script>
+        /**
+         * Document 对象中提供了以下方法用于获取 Element 元素对象：
+         *   1）getElementById：根据 id 属性值获取，返回单个 Element 对象；
+         *   2）getElementsByTagName：根据标签名称获取，返回 Element 对象数组；
+         *   3）getElementsByName：根据 name 属性值获取，返回 Element 对象数组；
+         *   4）getElementsByClassName：根据 class 属性值获取，返回 Element 对象数组；
+         */
+
+        // 1）getElementById：根据 id 属性值获取，返回单个 Element 对象；
+        let p1 = window.document.getElementById("p1");
+        console.log("getElementById：" + p1);
+
+        // 2）getElementsByTagName：根据标签名称获取，返回 Element 对象数组；
+        let divs = window.document.getElementsByTagName("div");
+        console.log("getElementsByTagName：");
+        for (let i = 0; i < divs.length; i++) {
+            console.log("     获取 divs 的第 " + i + " 个元素：" + divs[i]);
+        }
+
+        // 3）getElementsByName：根据 name 属性值获取，返回 Element 对象数组；
+        let hobbies = window.document.getElementsByName("hobby");
+        console.log("getElementsByName：");
+        for (let i = 0; i < hobbies.length; i++) {
+            console.log("     获取 hobbies 的第 " + i + " 个元素：" + hobbies[i]);
+        }
+
+        // 4）getElementsByClassName：根据 class 属性值获取，返回 Element 对象数组；
+        let d1s = window.document.getElementsByClassName("d1");
+        console.log("getElementsByClassName：");
+        for (let i = 0; i < d1s.length; i++) {
+            console.log("     获取 d1s 的第 " + i + " 个元素：" + d1s[i]);
+        }
+
+        // Element 对象的使用
+
+        let changeColor = function() {
+            let divs = window.document.getElementsByTagName("div");
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.color = "red";
+            }
+        }
+
+        function checkAll() {
+            let checkboxes = window.document.getElementsByName("hobby");
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
+    </script>
+</html>

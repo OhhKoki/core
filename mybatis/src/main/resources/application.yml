@@ -15,7 +15,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     # 其他配置
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 打印SQL日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印SQL日志
     default-fetch-size: 100
     default-statement-timeout: 30
 
@@ -23,4 +23,4 @@ mybatis:
 logging:
   level:
     # 打印Mapper接口的SQL执行日志
-    com.example.demo.mapper: debug
+    com.example.mapper: debug

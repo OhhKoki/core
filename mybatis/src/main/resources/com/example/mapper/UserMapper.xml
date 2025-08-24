@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+
+    <!-- 自定义结果映射 - 示例 -->
+    <resultMap id="userResultMap" type="com.example.entity.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+        <result property="version" column="version"/>
+    </resultMap>
+
+    <!-- 1. 查询所有用户 -->
+    <select id="selectAll" resultMap="userResultMap">
+        SELECT * FROM user WHERE deleted = 0
+    </select>
+
+    <!-- 2. 根据ID查询用户 -->
+    <select id="selectById" resultMap="userResultMap">
+        SELECT * FROM user WHERE id = #{id} AND deleted = 0
+    </select>
+
+    <!-- 3. 插入用户 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (name, age, email)
+        VALUES (#{name}, #{age}, #{email})
+    </insert>
+
+    <!-- 4. 更新用户 -->
+    <update id="update">
+        UPDATE user
+        SET name = #{name}, age = #{age}, email = #{email}, update_time = NOW()
+        WHERE id = #{id} AND deleted = 0
+    </update>
+
+    <!-- 5. 根据ID删除用户（物理删除） -->
+    <delete id="deleteById">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <!-- 6. 根据ID逻辑删除用户 -->
+    <update id="logicDeleteById">
+        UPDATE user SET deleted = 1, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <!-- 7. 根据姓名和年龄查询用户 -->
+    <select id="selectByNameAndAge" resultMap="userResultMap">
+        SELECT * FROM user
+        WHERE name = #{name} AND age = #{age} AND deleted = 0
+    </select>
+
+    <!-- 8. 根据条件动态查询用户 -->
+    <select id="selectByCondition" resultMap="userResultMap">
+        SELECT * FROM user
+        WHERE deleted = 0
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="age != null">
+            AND age = #{age}
+        </if>
+        <if test="email != null and email != ''">
+            AND email LIKE CONCAT('%', #{email}, '%')
+        </if>
+    </select>
+
+    <!-- 9. 批量插入用户 -->
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (name, age, email) VALUES
+        <foreach collection="list" item="user" separator=",">
+            (#{user.name}, #{user.age}, #{user.email})
+        </foreach>
+    </insert>
+
+    <!-- 10. 根据ID列表查询用户 -->
+    <select id="selectByIds" resultMap="userResultMap">
+        SELECT * FROM user
+        WHERE deleted = 0 AND id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <!-- 11. 分页查询用户 -->
+    <select id="selectByPage" resultMap="userResultMap">
+        SELECT * FROM user
+        WHERE deleted = 0
+        ORDER BY id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- 12. 使用Map作为参数查询 -->
+    <select id="selectByMap" resultMap="userResultMap">
+        SELECT * FROM user
+        WHERE deleted = 0
+        <if test="name != null">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="minAge != null">
+            AND age &gt;= #{minAge}
+        </if>
+        <if test="maxAge != null">
+            AND age &lt;= #{maxAge}
+        </if>
+    </select>
+
+    <!-- 13. 查询用户总数 -->
+    <select id="selectCount" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM user WHERE deleted = 0
+    </select>
+
+    <!-- 14. 根据邮箱查询用户（使用$符号示例，注意SQL注入风险） -->
+    <select id="selectByEmail" resultMap="userResultMap">
+        SELECT * FROM user
+        WHERE deleted = 0 AND email = '${email}'
+    </select>
+
+    <!-- 15. 使用乐观锁更新用户 -->
+    <update id="updateWithVersion">
+        UPDATE user
+        SET name = #{name}, age = #{age}, email = #{email},
+        update_time = NOW(), version = version + 1
+        WHERE id = #{id} AND version = #{version} AND deleted = 0
+    </update>
+
+</mapper>

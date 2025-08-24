@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.100.250.169:3306/mybatis?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+
+# MyBatis 配置
+mybatis:
+  # 配置 mapper.xml 文件路径
+  mapper-locations: classpath:mapper/*.xml
+  # 配置实体类包路径
+  type-aliases-package: com.example.entity
+  # 开启驼峰命名转换
+  configuration:
+    map-underscore-to-camel-case: true
+    # 其他配置
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 打印SQL日志
+    default-fetch-size: 100
+    default-statement-timeout: 30
+
+# 日志配置
+logging:
+  level:
+    # 打印Mapper接口的SQL执行日志
+    com.example.demo.mapper: debug
